@@ -11,6 +11,7 @@ source playwright_lab_venv/bin/activate
 python3 -m pip install -r requirements.txt
 
 playwright install
+sudo apt-get install libgstreamer-plugins-bad1.0-0 libflite1 gstreamer1.0-libav
 
 # run a application cmd
 
