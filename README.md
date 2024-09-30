@@ -15,5 +15,22 @@ sudo apt-get install libgstreamer-plugins-bad1.0-0 libflite1 gstreamer1.0-libav
 
 # run a application cmd
 
-python3 -c 'from app import play_sup; print(play_sup.play_sync_title("http://127.0.0.1:4000"))'
-python3 -c 'from app import play_sup; print(play_sup.async_title("http://127.0.0.1:4000"))'
+## titels
+
+```
+python3 -c 'from app import play_sup; print(play_sup.play_sync_index_title("http://127.0.0.1:4000", ["chromium", "firefox", "webkit"]))'
+python3 -c 'from app import play_sup; print(play_sup.play_async_index_title("http://127.0.0.1:4000", ["chromium", "firefox", "webkit"]))'
+```
+
+## screenshot
+
+```
+python3 -c 'from app import play_sup; print(play_sup.play_sync_screenshot("http://127.0.0.1:4000", ["chromium", "firefox", "webkit"]))'
+python3 -c 'from app import play_sup; print(play_sup.play_async_screenshot("http://127.0.0.1:4000", ["chromium", "firefox", "webkit"]))'
+```
+
+## run test using pytest
+
+python -m pytest -sx tests/test_ips_sale_support.py
+
+--html=report.html
