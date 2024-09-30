@@ -1,6 +1,7 @@
 """collection of playwrigth support functions"""
 import asyncio
 import re
+import subprocess
 from playwright.sync_api import sync_playwright, Page, expect
 from playwright.async_api import async_playwright
 
@@ -44,7 +45,7 @@ async def helper_async_screenshot(url, browsers):
             browser = await browser_type.launch()
             page = await browser.new_page()
             await page.goto(url)
-            await page.screenshot(path=f'example-{browser_type.name}.png')
+            await page.screenshot(path=f'latest-index-{browser_type.name}.png')
             await browser.close()
 
 def play_async_screenshot(url, browsers):
@@ -121,3 +122,32 @@ def all_elements_is_same(title, lista, len_browsers):
     if not lista:
         return False
     return all(element == title for element in lista)
+
+def compare_a_list_of_images(filenames):
+    """compare a list of images"""
+    for filename in filenames:
+        if not are_pictures_the_same(filename):
+            print(f'error compare_a_list_of_images screenshot {filename}')
+            return False
+    return True
+
+
+def are_pictures_the_same(latest_filename):
+    """check if if the pictures are the same"""
+    baseline = get_baseline_filename(latest_filename)
+    retur = perceptualdiff(baseline, latest_filename)
+    return retur
+
+def get_baseline_filename(latest_filename):
+    """get baseline filename"""
+    parts = latest_filename.split('-')
+    parts[0] = 'baseline'
+    baseline_filename = '-'.join(parts)
+    return baseline_filename
+
+
+def perceptualdiff(baseline, latest_filename):
+    result = subprocess.run(['perceptualdiff', 'baseline', 'latest_filename'], stdout=subprocess.PIPE)
+    result.stdout
+    print('result.stdout', result.stdout)
+    return result.stdout

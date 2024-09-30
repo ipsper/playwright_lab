@@ -34,3 +34,12 @@ python3 -c 'from app import play_sup; print(play_sup.play_async_screenshot("http
 python -m pytest -sx tests/test_ips_sale_support.py
 
 --html=report.html
+
+# use magick
+
+1. [magick](https://imagemagick.org/script/download.php)
+
+1. [install with apt](https://itsfoss.com/install-imagemagick-ubuntu/)
+
+sudo apt install imagemagick
+magick compare

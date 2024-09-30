@@ -10,7 +10,7 @@ def test_series_title_in_index():
     url = "http://127.0.0.1:4000"
     title = 'Salesupport · Phoenix Framework'
     list = play_sup.play_sync_index_title(url, browsers)
-    print(f'test_simple list {list}')
+    print(f'test_series_title_in_index list {list}')
     assert play_sup.all_elements_is_same(title ,list, len_browsers) is True
     end_time = time.time()
     runtime = end_time - start_time
@@ -24,20 +24,19 @@ def test_parallel_title_in_index():
     url = "http://127.0.0.1:4000"
     title = 'Salesupport · Phoenix Framework'
     list = play_sup.play_async_index_title(url, browsers)
-    print(f'test_simple list {list}')
+    print(f'test_parallel_title_in_index list {list}')
     assert play_sup.all_elements_is_same(title ,list, len_browsers) is True
     end_time = time.time()
     runtime = end_time - start_time
     print(f"runtime for test_parallel_title_in_index {runtime} seconds")
-
 
 def test_series_screenshot():
     """Test of get loggs api"""
     start_time = time.time()
     browsers = ['chromium', 'firefox', 'webkit']
     url = "http://127.0.0.1:4000"
-    dicten = play_sup.play_sync_screenshot(url, browsers)
-    print(f'test_simple dicten {dicten}')
+    screenshot = play_sup.play_sync_screenshot(url, browsers)
+    print(f'test_series_screenshot screenshot {screenshot}')
     assert dicten['retur'] is True
     end_time = time.time()
     runtime = end_time - start_time
