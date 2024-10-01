@@ -66,6 +66,30 @@ compare -compose src baseline-index-chromium.png latest-index-firefox.png differ
 
 ```
 
+# use compare in two step
+
+```
+compare baseline-index-webkit.png latest-index-webkit.png -compose src difference-index-webkit.png
+compare baseline-index-chromium.png latest-index-chromium.png -compose src difference-index-chromium.png
+compare baseline-index-firefox.png latest-index-firefox.png -compose src difference-index-firefox.png
+
+ls -lrt
+```
+
+-rw-rw-r-- 1 per per 3517 okt 1 11:26 difference-index-webkit.png
+-rw-rw-r-- 1 per per 3517 okt 1 11:26 difference-index-chromium.png
+-rw-rw-r-- 1 per per 3517 okt 1 11:26 difference-index-firefox.png
+
+```
+diff difference-index-firefox.png difference-index-chromium.png
+```
+
+Binary files difference-index-firefox.png and difference-index-chromium.png differ
+
+```
+sdiff B -b -s difference-index-firefox.png difference-index-chromium.png
+```
+
 # use poppy
 
 [poppy](https://github.com/kallaballa/Poppy)
