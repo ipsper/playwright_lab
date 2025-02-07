@@ -2,6 +2,7 @@
 import asyncio
 import re
 import subprocess
+from .logger_config import logger
 from playwright.sync_api import sync_playwright, Page, expect
 from playwright.async_api import async_playwright
 
@@ -28,10 +29,10 @@ def play_sync_index_title(url, browsers):
         for browser_type in browser_list:
             browser = browser_type.launch()
             page = browser.new_page()
-            print('play_sync_index_title', page)
+            logger.info('play_sync_index_title', page)
             page.goto(url)
             title = page.title()
-            print('syncgurka', title)
+            logger.info('syncgurka', title)
             titlar.append(title)
             browser.close()
         return titlar
@@ -58,7 +59,7 @@ async def do_get_title(browser_type, url):
     page = await browser.new_page()
     await page.goto(url)
     title = await page.title()
-    print('syncgurka', title)
+    logger.info('syncgurka', title)
     return title
 
 async def play_async_title(url, browsers):
@@ -127,7 +128,7 @@ def compare_a_list_of_images(filenames):
     """compare a list of images"""
     for filename in filenames:
         if not are_pictures_the_same(filename):
-            print(f'error compare_a_list_of_images screenshot {filename}')
+            logger.info(f'error compare_a_list_of_images screenshot {filename}')
             return False
     return True
 
@@ -149,5 +150,5 @@ def get_baseline_filename(latest_filename):
 def perceptualdiff(baseline, latest_filename):
     result = subprocess.run(['perceptualdiff', 'baseline', 'latest_filename'], stdout=subprocess.PIPE)
     result.stdout
-    print('result.stdout', result.stdout)
+    logger.info('result.stdout', result.stdout)
     return result.stdout
