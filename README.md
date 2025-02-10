@@ -123,3 +123,42 @@ make: *** [Makefile:130: dirs] Error 2
 ```
 
 https://github.com/dmtrKovalenko/odiff
+
+# bygga containern och lagra den
+
+1. Logga in på DockerHub från Docker CLI
+   Öppna terminalen och kör:
+
+docker login
+Ange ditt DockerHub-användarnamn och lösenord när du ombeds.
+
+- Exempel:
+
+```
+docker login -u <username>
+docker login -u peneh
+```
+
+2. Bygga och tagga din Docker-image
+   Skapa din Docker-image och tagga den så att den pekar på ditt DockerHub-repo:
+
+```
+
+docker build -t <username>/<containernamn>:<tag> .
+docker build -t peneh/fastapiplaywright:latest .
+```
+
+3. Push din image till DockerHub
+   Pusha den taggade imagen till DockerHub:
+
+```
+
+docker push <username>/<repository-name>:<tag>
+docker push peneh/fastapiplaywright:latest .
+```
+
+# kör containern
+
+```
+docker run -d -p 8000:8000 --name playwright-container peneh/fastapiplaywright:latest
+```
